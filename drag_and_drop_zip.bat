@@ -3,6 +3,7 @@
 rem Check if a file was dropped
 if "%~1" == "" goto end
 
+call .venv\Scripts\activate.bat
 rem Run the Python script
 py "script.py" "%~1"
 

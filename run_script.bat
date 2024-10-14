@@ -1,6 +1,7 @@
 @echo off
 
 rem Check if a file was dropped
+call .venv\Scripts\activate.bat
 if "%~1" == "" (
     rem No file dropped, run the Python script without arguments
     py "script.py"
