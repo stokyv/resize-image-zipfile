@@ -1,21 +1,24 @@
 @echo off
+setlocal
+chcp 65001 >nul
+set "PYTHONUTF8=1"
+pushd "%~dp0"
 
-rem Check if a file was dropped
-if "%~1" == "" goto end
+if "%~1"=="" (
+    echo Drop one or more ZIP, CBZ, or RAR files onto this batch file.
+    goto finish
+)
 
-call .venv\Scripts\activate.bat
+if not exist ".venv\Scripts\python.exe" (
+    echo ERROR: Python environment not found at "%CD%\.venv".
+    goto finish
+)
 
-rem echo Checking Python path...
-rem where python
+".venv\Scripts\python.exe" "script.py" %*
 
-rem Run the Python script
-"E:\Github\resize-image-zipfile\.venv\Scripts\python.exe" "script.py" "%~1"
-
-
-rem Keep the command prompt window open until a key is pressed
+:finish
+popd
 echo.
 echo Press any key to exit...
-pause > nul
-goto end
-
-:end
+pause >nul
+endlocal

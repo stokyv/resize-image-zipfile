@@ -1,0 +1,19 @@
+# Runtime data
+.resize-temp/
+processed-success/
+processed-failed/
+resize.log
+*.tmp
+__pycache__/
+
+# Local development files
+.venv/
+.specstory/
+
+# Archives are data, except for the small test fixtures.
+*.zip
+*.cbz
+*.rar
+!examples/*.zip
+!examples/*.cbz
+!examples/*.rar

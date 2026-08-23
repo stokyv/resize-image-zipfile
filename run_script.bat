@@ -1,16 +1,23 @@
 @echo off
+setlocal
+chcp 65001 >nul
+set "PYTHONUTF8=1"
+pushd "%~dp0"
 
-rem Check if a file was dropped
-call .venv\Scripts\activate.bat
-if "%~1" == "" (
-    rem No file dropped, run the Python script without arguments
-    python "script.py"
-) else (
-    rem File dropped, run the Python script with the dropped file as an argument
-    python "script.py" "%~1"
+if not exist ".venv\Scripts\python.exe" (
+    echo ERROR: Python environment not found at "%CD%\.venv".
+    goto finish
 )
 
-rem Keep the command prompt window open until a key is pressed
+if "%~1"=="" (
+    ".venv\Scripts\python.exe" "script.py"
+) else (
+    ".venv\Scripts\python.exe" "script.py" %*
+)
+
+:finish
+popd
 echo.
 echo Press any key to exit...
-pause > nul
+pause >nul
+endlocal
