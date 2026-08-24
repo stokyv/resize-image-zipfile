@@ -5,9 +5,11 @@ processed-failed/
 resize.log
 *.tmp
 __pycache__/
+*.py[cod]
 
 # Local development files
 .venv/
+.uv-cache/
 .specstory/
 
 # Archives are data, except for the small test fixtures.
